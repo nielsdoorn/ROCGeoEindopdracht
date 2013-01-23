@@ -1,15 +1,29 @@
-.verweg {	
+.container {
+	margin: 0 auto;
+	width: 640px;
+}
+
+div.container div {
+	width: 640px;
+	height: 200px;
+	text-align: center;
+	line-height: 200px;
+	font-size: 3em;
+}
+
+#verweg {	
 	background-color: blue;
-	display: none;
 }
 
-.bijna {
+#bijna {
 	background-color: orange;
-	display: none;
 }
 
-.party {
+#party {
 	background-color: red;
+}
+
+.hidden {
 	display: none;
 }
 

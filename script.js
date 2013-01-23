@@ -1,11 +1,29 @@
-var map = null;
 
-var ourCoords =  {
+var verWeg;
+var dichtbij;
+var party;
+
+var clubCoolLokatie =  {
 	latitude: 52.220513, 
-	longitude: 6.895717 // middelpunt van NL
+	longitude: 6.895717
 };
 
-window.onload = getMyLocation;
+window.onload = init;
+
+function init() {
+	verWeg = document.getElementById("verweg");
+	dichtbij = document.getElementById("bijna");
+	party = document.getElementById("party");
+
+	hideAllDivs();
+	getMyLocation();
+}
+
+function hideAllDivs() {
+	verweg.classList.add('hidden');
+	dichtbij.classList.add('hidden');
+	party.classList.add('hidden');
+}
 
 function getMyLocation() {
 	if (navigator.geolocation) {
@@ -19,10 +37,19 @@ function getMyLocation() {
 function displayLocation(position) {
 	var latitude = position.coords.latitude;
 	var longitude = position.coords.longitude;
-	var km = computeDistance(position.coords, ourCoords);
-
+	var km = computeDistance(position.coords, clubCoolLokatie);
+	
 	var distance = document.getElementById("distance");
+
 	distance.innerHTML = km;
+	
+	if (km < 0.5) {
+		party.classList.remove('hidden');
+	} else if (km <= 10) {
+		dichtbij.classList.remove('hidden');
+	} else {
+		verWeg.classList.remove('hidden');
+	}
 }
 
 
